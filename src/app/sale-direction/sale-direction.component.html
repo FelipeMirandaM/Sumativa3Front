@@ -1,0 +1,80 @@
+<div class="container">
+
+
+
+    <br>
+    <div class="row">
+  
+      <div class="col col-md-7 offset-md-2">
+        <div class="row">
+          <div class="border rounded">
+            <h1>Direccion de entrega</h1>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="border rounded">
+            <form [formGroup]="formDirectionInfo" (ngSubmit)="onSubmit()">               
+               <div class="mb-3">
+                <label class="form-label">Pais *</label>
+                <input type="text" placeholder="Ejemplo: Chile" class="form-control" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.country.errors}" formControlName="country" >
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Region *</label>
+                <input type="text" placeholder="Ejemplo: Metropolitana" class="form-control" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.state.errors}" formControlName="state">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Ciudad *</label>
+                <input type="text" placeholder="Ejemplo: Santiago" class="form-control" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.city.errors}" formControlName="city">
+              </div>
+              <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-5">
+                      <label class="form-label">Calle *</label>
+                      <input type="text" placeholder="Ejemplo: Pedro de Valdivia" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.street.errors}" class="form-control"
+                        formControlName="street">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Numero de calle * </label>
+                      <input type="Number" placeholder="Ejemplo: 2245" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.streetNumber.errors}" class="form-control"
+                          formControlName="streetNumber">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Numero*</label>
+                        <input type="Number" placeholder="Ejemplo: 101" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.number.errors}" class="form-control"
+                          formControlName="number">
+                      </div>
+                  </div>
+              </div>
+              <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-5">
+                      <label class="form-label">Codigo Postal *</label>
+                      <input type="Number" placeholder="Ejemplo: 1234567" (change)="reset()" [ngClass]="{ 'is-invalid': submitted &&(f.postalCode.errors || postalValid)}" class="form-control"
+                        formControlName="postalCode">
+                    </div>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <div class="row justify-content-between">
+                  <div class="col-4">
+                    <a class="nav-link active" aria-current="page" routerLink="/principal/home" routerLinkActive="active">Seguir Comprando</a>
+                  </div>
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                  </div>
+                </div>
+  
+  
+              </div>
+  
+            </form>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>

@@ -1,0 +1,68 @@
+<div class="container">
+
+    <body class="login-page">
+    
+    
+            <main>
+    
+                <div class="login-block">
+             
+    
+    
+                    <div class="form-group">
+                        <img src="/assets/img/logo.png" class="figure-img img-fluid rounded" alt="Scanfcode">
+                        <h1>Conectate con tu cuenta</h1>
+                        <div id="aluser">
+    
+                        </div>
+                        <div class="input-group">
+    
+                            <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                            <input id="user" type="text" [formControl]="user" class="form-control" placeholder="Usuario">
+                        </div>
+                    </div>
+    
+                    <hr class="hr-xs">
+    
+                    <div class="form-group">
+                        <div id="alpass">
+    
+                        </div>
+                        <div class="input-group">
+    
+                            <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
+                            <input id="pass"  type="password" [formControl]="pwd" class="form-control" placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <div id="valTodos">
+    
+                    </div>
+                    
+                    <div *ngIf = alert>
+                        <span style="color:red">{{alertUser}}</span>
+                    </div>
+    
+    
+    
+                    <button class="btn btn-primary btn-block" (click)=validar()>Conectar</button>
+    
+    
+ <!--                    <div class="login-footer">
+                        <h6>Registrate <a href="signup.html">aquí</a></h6>
+                        <h6>o registrate con</h6>
+                        <ul class="social-icons">
+                            <li><a><img  src="/assets/img/gmail.png"></a></li>
+                            <li><a><img  src="/assets/img/instagram.png"></a></li>
+                            <li><a><img  src="/assets/img/twitter.png"></a></li>
+                        </ul>
+                    </div> -->
+    
+                </div>
+    
+    
+            </main>
+    </body>
+        
+    </div>
+
+    

@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Editar Producto numero {{currentIndex}}</h1>
+    <form [formGroup]="formNewProduct" (ngSubmit)="onSubmit()">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">url</span>
+            <input  class="form-control" type="text" formControlName="url"  [ngClass]="{ 'is-invalid': submitted && f.url.errors }" value="0">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+            <input class="form-control" type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+        </div>
+    
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Tipo</span>
+            <input  class="form-control" type="text" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+        </div>
+    
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
+            <input  class="form-control" type="number" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
+        </div>
+        <button class="btn btn-primary" type ="submit">Guardar</button>
+    </form>
+</div>

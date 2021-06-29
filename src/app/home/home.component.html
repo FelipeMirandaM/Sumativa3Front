@@ -1,0 +1,144 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/assets/img/slice1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/assets/img/slice2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/assets/img/slice3.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<main>
+
+  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Buscar"
+              aria-describedby="basic-addon1" [(ngModel)]="filter">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <a (click)=openModal() class="btn btn-primary btn-small navbar-btn"> <i
+              class="bi bi-cart"></i>{{productNumber}}</a>
+
+        </div>
+
+      </div>
+    <br>
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-6 g-3">
+      <div class="col" *ngFor="let product of returnedArray | filter:filter;">
+        <div class="card h-100 shadow-sm"> <img src="{{product[1].img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class="clearfix mb-3"> <span
+                class="float-start badge rounded-pill bg-primary">{{product[1].brand}}</span> <span
+                class="float-end price-hp">{{product[1].price | currency:'$' : 'symbol' : '1.0-0' }}</span> </div>
+            <h5 class="card-title">{{product[1].description}}</h5>
+            <div class="text-center my-4"> <a (click)="addProduct(product[1].id)" class="btn btn2 btn-warning">Agregar
+                al carrito</a> </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col order-last">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <pagination [itemsPerPage]="12" [totalItems]="productList.size" (pageChanged)="pageChanged($event)">
+            </pagination>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!--   Shopping Cart  -->
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div *ngIf="productNumber>0" class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel">
+
+          </h5>
+          <button (click)=closeModal() type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-image">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Total</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of shoppingList  | keyvalue">
+                <td class="w-25">
+                  <img src="{{item.value[0].img}}" width="83" height="161" class="img-fluid img-thumbnail" alt="Sheep">
+                </td>
+                <td>{{item.value[0].description}}</td>
+                <td>{{item.value[0].price | currency:'$' : 'symbol' : '1.0-0' }}</td>
+                <td class="qty"><input (change)="changeAmmount($event,item.value[0].id)" min=1 type="number"
+                    class="form-control" id="input1" value="{{item.value[1]}}"></td>
+                <td>{{item.value[0].price * item.value[1] | currency:'$' : 'symbol' : '1.0-0' }}</td>
+                <td>
+                  <a (click)="deleteProduct(item.value[0].id)" class="btn btn-danger btn-sm">
+                    <i class="bi bi-x"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-end">
+            <h5>Total Neto: <span class="price text-success">{{subtotal | currency:'$' : 'symbol' : '1.0-0'}}</span>
+            </h5>
+          </div>
+          <div class="d-flex justify-content-end">
+            <h5>IVA: <span class="price text-success">{{iva | currency:'$' : 'symbol' : '1.0-0'}}</span></h5>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <h4>Total: <span class="price text-success">{{total | currency:'$' : 'symbol' : '1.0-0'}}</span></h4>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-between">
+          <button (click)=closeModal() type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)=checkOrder() type="button" class="btn btn-success">Pasar a caja</button>
+        </div>
+      </div>
+      <div *ngIf="productNumber==0" class="modal-content">
+          <h1>Carrito Vacio</h1>
+      </div>
+    </div>
+  </div>
+</main>

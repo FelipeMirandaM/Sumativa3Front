@@ -1,0 +1,7 @@
+.overflow-auto {
+  max-height: 210px;
+  overflow-y: auto;
+  min-width: 100% !important;
+  background-attachment: local, local, scroll, scroll;
+}
+.overflow-auto { white-space: normal; }

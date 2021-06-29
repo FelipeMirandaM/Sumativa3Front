@@ -1,0 +1,154 @@
+<div class="container">
+
+
+
+
+  <div class="row">
+
+    <div class="col col-md-7">
+      <div class="row">
+        <div class="border rounded">
+          <h1>Datos Personales</h1>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="border rounded">
+          <form [formGroup]="formUserInfo" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Nombre *</label>
+              <input type="text" placeholder="Ejemplo: Andres" class="form-control" (change)="reset()"
+                formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors}">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Apellido *</label>
+              <input type="text" placeholder="Ejemplo: Gonzales" class="form-control" formControlName="lastName"
+                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Email *</label>
+              <input type="text" placeholder="Ejemplo: andres.gonzales@gmail.com" class="form-control"
+                formControlName="email" [ngClass]="{ 'is-invalid': submitted && (f.email.errors || validEmail)}">
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label">Codigo</label>
+                  <select formControlName="codePhone" class="form-select"
+                    [ngClass]="{ 'is-invalid': submitted && f.codePhone.errors }">
+                    <option value="0">+569</option>
+                    <option value="1">+562</option>
+                    <option value="2">+54</option>
+                  </select>
+                </div>
+                <div class="col-md-9">
+                  <label class="form-label">Numero de contacto *</label>
+                  <input type="number" placeholder="Ejemplo: 87654321" class="form-control" formControlName="cellPhone"
+                    [ngClass]="{ 'is-invalid': submitted && (f.cellPhone.errors || validNumber) }">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Rut *</label>
+              <input type="text" placeholder="Ejemplo: 12345678-9" class="form-control" formControlName="rut"
+                [ngClass]="{ 'is-invalid':  submitted && (f.rut.errors || validRut) }">
+            </div>
+
+            <div class="mb-3">
+              <div class="row justify-content-between">
+                <div class="col-4">
+                  <a class="nav-link active" aria-current="page" routerLink="/principal/home" routerLinkActive="active">Seguir Comprando</a>
+                </div>
+                <div class="col-4">
+                  <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
+              </div>
+
+
+            </div>
+
+
+          </form>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 offset-md-1">
+      <h2>Detalles de compra</h2>
+      <div class="row">
+        <div class="border rounded">
+          <div>
+            <h5><i class="bi bi-cart"></i> Tu Carrito ({{productNumber}} producto) </h5>
+
+          </div>
+          <div>
+            <div class="container-fluid overflow-auto">
+              <div *ngFor="let item of shoppingList  | keyvalue" class="row">
+                <h5>{{item.value[0].description}}</h5>
+                <div class="col col-md-2">
+                  <img src="{{item.value[0].img}}" width="42" height="62">
+                </div>
+                <div class="col col-md-8">
+                  <div class="row">
+                    <h6>{{item.value[0].price | currency:'$' : 'symbol' : '1.0-0' }}</h6>
+                  </div>
+                  <div class="row">
+                    <i>Cantidad: {{item.value[1]}}</i>
+                  </div>
+                </div>
+                <hr>
+              </div>
+
+            </div>
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="border rounded">
+
+          <h3 class="fw-bold">Resumen de tu compra</h3>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="text-start">SubTotal: </p>
+            </div>
+            <div>
+              <p class="text-end">{{subtotal | currency:'$' : 'symbol' : '1.0-0'}}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="text-start">IVA:</p>
+            </div>
+            <div>
+              <p class="text-end">{{iva | currency:'$' : 'symbol' : '1.0-0'}} </p>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="text-start">Total: </p>
+            </div>
+            <div>
+              <p class="text-end">{{total | currency:'$' : 'symbol' : '1.0-0'}}</p>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

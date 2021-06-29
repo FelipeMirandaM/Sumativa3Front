@@ -1,0 +1,69 @@
+<div class="container">
+
+
+
+    <br>
+    <div class="row">
+  
+      <div class="col col-md-7 offset-md-2">
+        <div class="row">
+          <div class="border rounded">
+            <h1>Metodo de pago</h1>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="border rounded">
+            <form [formGroup]="formPayMethodInfo" (ngSubmit)="onSubmit()">              
+               <div class="mb-3">
+                <label class="form-label">Tipo de cargeta *</label>
+                <select class="form-select" aria-label="Default select example" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.cardType.errors}" formControlName="cardType">
+                    <option selected hidden>Seleccione tipo de targeta</option>
+                    <option value="1">Visa</option>
+                    <option value="2">Master Card</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Numbero Tarjeta  *</label>
+                <input type="number" placeholder="Ejemplo: 5555555555554" class="form-control" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && (f.cardNumber.errors || cardValid)}" formControlName="cardNumber">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Nombre completo Titular *</label>
+                <input type="text" placeholder="Ejemplo: Matias Andres Alvarez Perez" class="form-control" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && f.cardName.errors}" formControlName="cardName">
+              </div>
+              <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-6">
+                      <label class="form-label">Fecha de expiracion *</label>
+                      <input type="text" placeholder="Ejemplo: 06/21" (change)="reset()" [ngClass]="{ 'is-invalid': submitted && (f.cardExpire.errors || expDate)}" class="form-control"
+                      formControlName="cardExpire">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">CVC * </label>
+                      <input type="number" placeholder="Ejemplo: 224" (change)="reset()" [ngClass]="{ 'is-invalid': submitted &&( f.cardCVC.errors || cvcValid)}" class="form-control"
+                      formControlName="cardCVC">
+                    </div>
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="row justify-content-between">
+                  <div class="col-4">
+                    <a class="nav-link active" aria-current="page" routerLink="/principal/home" routerLinkActive="active">Seguir Comprando</a>
+                  </div>
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                  </div>
+                </div>
+  
+  
+              </div>
+  
+            </form>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
